@@ -1,0 +1,26 @@
+NAME	:= pipex
+SRC		:=  main.c Errors.c
+SRCB	:=  
+OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
+OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
+CC		:= gcc
+FLAGS	:= -Wall -Wextra -Werror -fsanitize=address -g
+LIBFT	:= ./libft/libft.a
+
+.PHONY: all clean fclean re bonus
+
+all: $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+	@$(CC) $(FLAGS)  $(LIBFT) $(OBJ) -o $(NAME)
+%.o: %.c
+	$(CC) $(FLAGS) -c $<  -o $@
+$(LIBFT):
+	@make -C ./libft
+clean:
+	@rm -f $(OBJ) $(OBJB)
+	@make -C ./libft fclean
+fclean: clean
+	@rm -f $(NAME)
+re: fclean all
+bonus: $(LIBFT) $(OBJB)
+	@$(CC) $(FLAGS) $(LIBFT) $(OBJB) -o $(NAME)
