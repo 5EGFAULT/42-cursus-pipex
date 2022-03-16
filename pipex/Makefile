@@ -1,5 +1,6 @@
 NAME	:= pipex
-SRC		:=  main.c Errors.c
+#SRC		:=  main.c Errors.c
+SRC		:=  m.c
 SRCB	:=  
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
