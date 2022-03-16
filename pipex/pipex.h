@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:30:11 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/15 22:48:23 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:21:04 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,9 @@
 //!	Errors.c
 int	catch_errors(int argc, char **argv);
 int	catch_file_error(char *path, int permission);
+
+
+void	loop_cmds(int argc, char **argv, char **envp );
+int		exec_cmmand(int *fdpipe, char *cmd, char **envp);
 
 #endif
