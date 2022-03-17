@@ -32,7 +32,7 @@ void	loop_cmds(int argc, char **argv, char **envp )
 	inout[1] = fdpipe0[1];
 	i = 1;
 	exec_cmmand(inout, argv[2], envp, fdpipe0);	
-	fdinout[1] = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0777);
+	fdinout[1] = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	close(fdpipe0[1]);
 	inout[1] = fdinout[1];
 	inout[0] = fdpipe0[0];
