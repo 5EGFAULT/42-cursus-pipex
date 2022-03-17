@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:47:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/17 19:55:02 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:29:45 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ char	*get_cmd_full_path(char **envp, char *cmd)
 			return (path);
 		free(path);
 	}
-	write(2, "pipex: command not found : ", 28);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, "\n", 1);
-	exit(127);
+	return (cmd);
+	//write(2, "pipex: command not found : ", 28);
+	//write(2, cmd, ft_strlen(cmd));
+	//write(2, "\n", 1);
+	//exit(127);
 }
