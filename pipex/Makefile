@@ -1,11 +1,10 @@
 NAME	:= pipex
-#SRC		:=  main.c Errors.c
-SRC		:=  m.c
+SRC		:=  env.c    main.c   path.c   utils.c
 SRCB	:=  
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
 CC		:= gcc
-FLAGS	:= -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS	:= -Wall -Wextra -Werror # -g -fsanitize=address 
 LIBFT	:= ./libft/libft.a
 
 .PHONY: all clean fclean re bonus

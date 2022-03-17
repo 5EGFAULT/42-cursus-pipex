@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:30:11 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/16 22:32:32 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:32:27 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	catch_file_error(char *path, int permission);
 
 
 void	loop_cmds(int argc, char **argv, char **envp );
-int	exec_cmmand(int *fdpipe, char *cmd, char **envp, int in);
+int		exec_cmmand(int	*inout, char *cmd, char **envp, int *fdpipe);
+char	*get_env_var(char **envp, char *env_var);
+void	free_2d(char **ptr);
+char	**get_paths(char **envp);
+char	*get_cmd_full_path(char **envp, char *cmd);
 
 #endif

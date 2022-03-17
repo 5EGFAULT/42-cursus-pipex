@@ -2,6 +2,7 @@
 	"files.associations": {
 		"pipex.h": "c",
 		"unistd.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"stdio.h": "c"
 	}
 }
