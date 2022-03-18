@@ -6,11 +6,23 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 21:01:27 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 21:05:51 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:33:06 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./pipex_bonus.h"
+
+static void	setio(t_d_list *files, t_d_list *tmp, t_cmd *cc)
+{
+	if (tmp->prev)
+		cc->inout[0] = ((t_cmd *)tmp->prev->content)->pipefd[0];
+	else
+		cc->inout[0] = ((t_file *)files->content)->fd;
+	if (cc->pipefd)
+		cc->inout[1] = cc->pipefd[1];
+	else
+		cc->inout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
+}
 
 void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc)
 {
@@ -19,17 +31,12 @@ void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc)
 	int			i;
 
 	tmp = cmds;
+	if (((t_file *)files->content)->fd < 0)
+		tmp = cmds->next;
 	while (tmp)
 	{
 		cc = tmp->content;
-		if (tmp->prev)
-			cc->inout[0] = ((t_cmd *)tmp->prev->content)->pipefd[0];
-		else
-			cc->inout[0] = ((t_file *)files->content)->fd;
-		if (cc->pipefd)
-			cc->inout[1] = cc->pipefd[1];
-		else
-			cc->inout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
+		setio(files, tmp, cc);
 		exec_cmmand(cc, envp);
 		close(cc->inout[1]);
 		close(cc->inout[0]);
@@ -88,6 +95,7 @@ int	exec_cmmand(t_cmd *cmd, char **envp)
 			close(cmd->pipefd[0]);
 			close(cmd->pipefd[1]);
 		}
+		exec_inter(cmd, envp);
 	}
 	return (pid);
 }

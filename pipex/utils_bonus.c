@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:15:03 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 20:46:26 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:30:23 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ t_file	*new_file(char *file, int idx, int perm)
 	c->file = file;
 	c->fd = open(file, perm, 0644);
 	if (c->fd < 0)
-	{
 		perror("pipex: ");
-		exit(errno);
-	}
 	return (c);
 }
