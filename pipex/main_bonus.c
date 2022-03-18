@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 19:06:15 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:11:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	main(int argc, char **argv, char **envp)
 	t_d_list *files;
 	int start;
 
+	//printf("** %d **\n", ft_strncmp("str\n", "str\n", ft_strlen("str\n")));
+	//printf("** %d **\n", ft_strncmp("str\n", "str", ft_strlen("str\n")));
+	//printf("** %d **\n", ft_strncmp("str\n", "str\n", ft_strlen("str")));
 	if (argc < 3)
 	{
 		perror("pipex: must have at least 3 Args");
