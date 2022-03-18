@@ -1,6 +1,6 @@
 NAME	:= pipex
-SRC		:=  env.c    main.c   path.c   utils.c s_d_list_0.c s_d_list_1.c 
-SRCB	:=  env_bonus.c    main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_bonus.c s_d_list_1_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c 
+SRC		:=  env.c    main.c   path.c   utils.c s_d_list_0.c s_d_list_1.c pipe.c
+SRCB	:=  env_bonus.c    main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_bonus.c s_d_list_1_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c  pipe_bonus.c
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
 CC		:= gcc

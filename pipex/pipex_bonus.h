@@ -6,12 +6,12 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:40:13 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 20:31:24 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:49:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_PIPEX_BONUS_H
-# define SO_PIPEX_BONUS_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -40,9 +40,7 @@ typedef struct s_d_list
 	struct s_d_list	*next;
 	struct s_d_list	*prev;
 }				t_d_list;
-
-void	del_content(void *);
-
+void		del_content(void *content);
 //!			s_d_list_0.c
 t_d_list	*ft_d_lstnew(void *content);
 void		ft_d_lstadd_front(t_d_list **lst, t_d_list *new);
@@ -55,16 +53,14 @@ void		ft_d_lstclear(t_d_list **lst, void (*del)(void *));
 void		ft_d_lstiter(t_d_list *lst, void (*f)(void *));
 void		ft_d_lstdelfront(t_d_list **lst, void (*del)(void *));
 void		ft_d_lstiter_back(t_d_list *lst, void (*f)(void *));
-
-void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp , int argc);
-int		exec_cmmand(t_cmd *cmd, char **envp);
-char	*get_env_var(char **envp, char *env_var);
-void	free_2d(char **ptr);
-char	**get_paths(char **envp);
-char	*get_cmd_full_path(char **envp, char *cmd);
-t_cmd	*new_cmd(char *cmd, int idx, int islast);
-t_file	*new_file(char *file, int idx, int perm);
-int		init_files(int argc, char **argv, t_d_list **files);
-void	init_cmds(int argc, char **argv, t_d_list **cmds, int start);
-
+void		loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc);
+int			exec_cmmand(t_cmd *cmd, char **envp);
+char		*get_env_var(char **envp, char *env_var);
+void		free_2d(char **ptr);
+char		**get_paths(char **envp);
+char		*get_cmd_full_path(char **envp, char *cmd);
+t_cmd		*new_cmd(char *cmd, int idx, int islast);
+t_file		*new_file(char *file, int idx, int perm);
+int			init_files(int argc, char **argv, t_d_list **files);
+void		init_cmds(int argc, char **argv, t_d_list **cmds, int start);
 #endif

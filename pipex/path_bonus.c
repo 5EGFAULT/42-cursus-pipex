@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:47:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 12:16:50 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:50:23 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	**get_paths(char **envp)
 {
-	char **paths;
-	char **result;
-	char *tmp;
-	int i;
+	char	**paths;
+	char	**result;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	result = ft_split(get_env_var(envp, "PATH"), ':');
@@ -40,8 +40,8 @@ char	**get_paths(char **envp)
 
 char	*get_cmd_full_path(char **envp, char *cmd)
 {
-	char *path;
-	char **all_paths;
+	char	*path;
+	char	**all_paths;
 	int		i;
 
 	all_paths = get_paths(envp);
