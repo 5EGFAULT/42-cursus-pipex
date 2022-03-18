@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 17:07:21 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:22:29 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv, char **envp)
 	init_files(argc, argv, &files);
 	init_cmds(argc, argv, &cmds);
 	loop_cmds(files, cmds, envp, argc);
+	//ft_d_lstclear(cmds, del_content);
+	//ft_d_lstclear(files, del_content);
 	//system("leaks pipex");
 	//while (1)
 	//{

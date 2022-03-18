@@ -4,7 +4,7 @@ SRCB	:=  env_bonus.c    main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_b
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
 CC		:= gcc
-FLAGS	:= -Wall -Wextra -Werror # -g -fsanitize=address 
+FLAGS	:= -Wall -Wextra -Werror  #-g -fsanitize=address 
 LIBFT	:= ./libft/libft.a
 
 .PHONY: all clean fclean re bonus

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_d_list_1.c                                       :+:      :+:    :+:   */
+/*   s_d_list_1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:10:17 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 12:17:15 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:16:46 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./pipex_bonus.h"
 
-void	ft_d_lstdelone(t_d_list *lst)
+void	ft_d_lstdelone(t_d_list *lst, void (*del)(void *))
 {
 	if (!lst)
 		return ;
+	del(lst->content);
 	free(lst);
 }
 
-void	ft_d_lstclear(t_d_list **lst)
+void	ft_d_lstclear(t_d_list **lst, void (*del)(void *))
 {
 	t_d_list	*tmp;
 
@@ -29,11 +30,11 @@ void	ft_d_lstclear(t_d_list **lst)
 	{
 		tmp = *lst;
 		*lst = (*lst)->next;
-		ft_d_lstdelone(tmp);
+		ft_d_lstdelone(tmp, del);
 	}
 }
 
-void	ft_d_lstiter(t_d_list *lst, void (*f)(int))
+void	ft_d_lstiter(t_d_list *lst, void (*f)(void *))
 {
 	t_d_list	*tmp;
 
@@ -45,7 +46,7 @@ void	ft_d_lstiter(t_d_list *lst, void (*f)(int))
 	}
 }
 
-void	ft_d_lstdelfront(t_d_list **lst)
+void	ft_d_lstdelfront(t_d_list **lst, void (*del)(void *))
 {
 	t_d_list	*tmp;
 
@@ -55,7 +56,7 @@ void	ft_d_lstdelfront(t_d_list **lst)
 	*lst = (*lst)->next;
 	if (*lst)
 		(*lst)->prev = NULL;
-	ft_d_lstdelone(tmp);
+	ft_d_lstdelone(tmp, del);
 }
 
 void	ft_d_lstiter_back(t_d_list *lst, void (*f)(int))
