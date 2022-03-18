@@ -11,7 +11,7 @@
 			"request": "launch",
 			"program":"${workspaceFolder}/pipex/pipex",
 			"args": [
-				"ss", "grep \\# " ,"cat" ," test1vscode"
+				"dup.c ", "grep s " ,"cat","sort", "ls" ," test1vscode"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",

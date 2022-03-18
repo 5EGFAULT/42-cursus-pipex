@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:40:13 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 15:52:47 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:07:36 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_d_lstiter(t_d_list *lst, void (*f)(void *));
 void		ft_d_lstdelfront(t_d_list **lst);
 void		ft_d_lstiter_back(t_d_list *lst, void (*f)(void *));
 
-void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp );
+void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp , int argc);
 int		exec_cmmand(t_cmd *cmd, char **envp);
 char	*get_env_var(char **envp, char *env_var);
 void	free_2d(char **ptr);

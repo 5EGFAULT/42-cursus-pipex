@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 16:33:43 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:07:21 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,21 @@ int	main(int argc, char **argv, char **envp)
 	t_d_list *cmds;
 	t_d_list *files;
 
-
+	if (argc < 3)
+	{
+		perror("pipex: must have at least 3 Args");
+		exit(-1);
+	}
 	cmds = NULL;
 	files = NULL;
 	init_files(argc, argv, &files);
 	init_cmds(argc, argv, &cmds);
-	loop_cmds(files, cmds, envp);
+	loop_cmds(files, cmds, envp, argc);
 	//system("leaks pipex");
-	while (1)
-	{
-		;
-	}
+	//while (1)
+	//{
+	//	;
+	//}
 	//system("lsof | grep pipex"); // only get 0 in 1 out 2  err
 	return (0);
 }
@@ -57,7 +61,7 @@ void	init_cmds(int argc, char **argv, t_d_list **cmds)
 void printc(void *s)
 {
 	t_cmd *c = s;
-	fprintf(stderr, " cmmand  %s \n", c->cmd );
+	fprintf(stderr, " cmmand  %s %p \n", c->cmd , c->pipefd);
 }
 void printfi(void *s)
 {
@@ -65,45 +69,56 @@ void printfi(void *s)
 	fprintf(stderr, " file :  %s \n", c->file );
 }
 
-void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp )
+
+void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc )
 {
-	int fdinout[2];
-	//int fdpipe[2];
-	t_cmd	*cc;
+	//int fdinout[2];
+	t_d_list	*tmp;
+	t_cmd	*cc; 
 	int i; 
 
-	fdinout[0] = ((t_file *)files->content)->fd;	
-	cc = cmds->content;
-	ft_d_lstiter(cmds, printc);
-	ft_d_lstiter(files, printfi);
-	exit(0);
-	if (cc->pipefd)
+	//fdinout[0] = ((t_file *)files->content)->fd;
+	//ft_d_lstiter(cmds, printc);
+	//ft_d_lstiter(files, printfi);
+	tmp = cmds;
+	while (tmp)
 	{
-		cc->inout[1] = ((t_cmd *)cmds->content)->pipefd[1];
+		cc = tmp->content;
+		if (tmp->prev)
+			cc->inout[0] = ((t_cmd *)tmp->prev->content)->pipefd[0];
+		else
+			cc->inout[0] = ((t_file *)files->content)->fd;
+		if (cc->pipefd)
+			cc->inout[1] = cc->pipefd[1];
+		else
+			cc->inout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
+		exec_cmmand(cc, envp);
+		close(cc->inout[1]);
+		close(cc->inout[0]);
+		tmp = tmp->next;
 	}
-	else
-	{
-		cc->inout[1] = 2;
-	}
-	cc->inout[0] = fdinout[0];	
-	i = 1;
-	exec_cmmand(cmds->content, envp);	
-	fdinout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
-	//close(fdpipe[1]);
-	close(cc->inout[1]);
-	close(cc->inout[0]);
 	
-	//inout[1] = fdinout[1];
-	//inout[0] = fdpipe[0];
-	cc = cmds->next->content;
-	cc->inout[1] = fdinout[1];
-	cc->inout[0] =  ((t_cmd *)cmds->content)->pipefd[0];
-	exec_cmmand(cc, envp);
-	close(cc->inout[1]);
-	close(cc->inout[0]);
-	//close(fdpipe[0]);
-	wait(NULL);
-	wait(NULL);
+	//cc->inout[0] = fdinout[0];	
+	//if (cc->pipefd)
+	//	cc->inout[1] = cc->pipefd[1];
+	//else
+	//	cc->inout[1] = 2;
+	//i = 1;
+	//exec_cmmand(cmds->content, envp);	
+	//fdinout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
+	//close(cc->inout[1]);
+	//close(cc->inout[0]);
+	//cc = cmds->next->content;
+	//cc->inout[1] = fdinout[1];
+	//cc->inout[0] =  ((t_cmd *)cmds->content)->pipefd[0];
+	//exec_cmmand(cc, envp);
+	//close(cc->inout[1]);
+	//close(cc->inout[0]);
+	i = 1;
+	while (++i < argc)
+	{
+		wait(NULL);
+	}
 }
 
 int	exec_cmmand(t_cmd *cmd, char **envp)
@@ -123,10 +138,11 @@ int	exec_cmmand(t_cmd *cmd, char **envp)
 	{
 		if (dup2(cmd->inout[0], 0) < 0 ||dup2(cmd->inout[1], 1) < 0)
 		{
-			
+			//fprintf(stderr, "err %s  in 0 %d  out 1 %d\n",cmd->cmd,  cmd->inout[0] , cmd->inout[1]);
 			perror("pipex: ");
 			exit(errno);
 		}
+		//fprintf(stderr, "%s  in 0 %d  out 1 %d\n",cmd->cmd,  cmd->inout[0] , cmd->inout[1]);
 		close(cmd->inout[0]);
 		close(cmd->inout[1]);
 		if (cmd->pipefd)
