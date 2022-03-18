@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 21:02:11 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:59:46 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	main(int argc, char **argv, char **envp)
 	start = init_files(argc, argv, &files);
 	init_cmds(argc, argv, &cmds, start);
 	loop_cmds(files, cmds, envp, argc);
-	system("leaks pipex");
-	while (1)
-		;
-	system("lsof | grep pipex");
 	return (0);
 }
 
@@ -53,9 +49,12 @@ int	her_doc(char *limiter)
 	{
 		write(pip[1], str, ft_strlen(str));
 		write(1, "heredoc> ", 10);
+		free(str);
 		str = get_next_line(0);
 	}
 	close(pip[1]);
+	free(str);
+	free(testlimitter);
 	return (pip[0]);
 }
 
