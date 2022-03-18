@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 17:22:29 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:06:15 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_d_list *cmds;
 	t_d_list *files;
+	int start;
 
 	if (argc < 3)
 	{
@@ -24,8 +25,8 @@ int	main(int argc, char **argv, char **envp)
 	}
 	cmds = NULL;
 	files = NULL;
-	init_files(argc, argv, &files);
-	init_cmds(argc, argv, &cmds);
+	start =	init_files(argc, argv, &files);
+	init_cmds(argc, argv, &cmds, start);
 	loop_cmds(files, cmds, envp, argc);
 	//ft_d_lstclear(cmds, del_content);
 	//ft_d_lstclear(files, del_content);
@@ -37,20 +38,73 @@ int	main(int argc, char **argv, char **envp)
 	//system("lsof | grep pipex"); // only get 0 in 1 out 2  err
 	return (0);
 }
-void	init_files(int argc, char **argv, t_d_list **files)
+int	her_doc(char * limiter)
+{
+	int pip[2];
+	char *str;
+	char *testlimitter;
+
+	if (pipe(pip) < 0)
+	{
+		perror("pipex: ");
+		exit(errno);		
+	}
+	testlimitter = ft_strjoin(limiter, "\n");
+	write(1, "heredoc> ", 10);
+	str = get_next_line(0);
+	while (ft_strncmp(str, testlimitter, ft_strlen(testlimitter)))
+	{
+		write(pip[1], str, ft_strlen(str));
+		write(1, "heredoc> ", 10);
+		str = get_next_line(0);
+	}
+	close(pip[1]);
+	return(pip[0]);
+}
+
+t_file	*new_her_doc(char *limiter, int idx)
+{
+	t_file *c;
+
+	c = malloc(sizeof(t_file));
+	if (!c)
+	{
+		perror("pipex: ");
+		exit(errno);
+	}
+	c->idx = idx;
+	c->file = "her_doc";
+	c->fd =  her_doc(limiter);
+	return(c);
+}
+
+int	init_files(int argc, char **argv, t_d_list **files)
 {
 	t_file		*file;
-	file = new_file(argv[1], 1, O_RDONLY);
+	int start;
+
+	start = 1;
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+	{
+		start = 2;
+		file = new_her_doc(argv[2], 2);
+	}
+	else
+	{
+		file = new_file(argv[1], 1, O_RDONLY);
+	}
 	ft_d_lstadd_back(files, ft_d_lstnew(file));
 	file = new_file(argv[argc - 1], argc - 1, O_WRONLY | O_TRUNC | O_CREAT);
 	ft_d_lstadd_back(files, ft_d_lstnew(file));
+	return (start);
 }
-void	init_cmds(int argc, char **argv, t_d_list **cmds)
+
+void	init_cmds(int argc, char **argv, t_d_list **cmds, int start)
 {
 	t_cmd *cmd;
 	int	i;
 
-	i = 1;
+	i = start;
 	while (++i < argc - 2)
 	{
 		cmd = new_cmd(argv[i], i, 0);
@@ -65,23 +119,19 @@ void printc(void *s)
 	t_cmd *c = s;
 	fprintf(stderr, " cmmand  %s %p \n", c->cmd , c->pipefd);
 }
+
 void printfi(void *s)
 {
 	t_file *c = s;
 	fprintf(stderr, " file :  %s \n", c->file );
 }
 
-
 void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc )
 {
-	//int fdinout[2];
 	t_d_list	*tmp;
 	t_cmd	*cc; 
 	int i; 
 
-	//fdinout[0] = ((t_file *)files->content)->fd;
-	//ft_d_lstiter(cmds, printc);
-	//ft_d_lstiter(files, printfi);
 	tmp = cmds;
 	while (tmp)
 	{
@@ -99,23 +149,6 @@ void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc )
 		close(cc->inout[0]);
 		tmp = tmp->next;
 	}
-	
-	//cc->inout[0] = fdinout[0];	
-	//if (cc->pipefd)
-	//	cc->inout[1] = cc->pipefd[1];
-	//else
-	//	cc->inout[1] = 2;
-	//i = 1;
-	//exec_cmmand(cmds->content, envp);	
-	//fdinout[1] = ((t_file *)ft_d_lstlast(files)->content)->fd;
-	//close(cc->inout[1]);
-	//close(cc->inout[0]);
-	//cc = cmds->next->content;
-	//cc->inout[1] = fdinout[1];
-	//cc->inout[0] =  ((t_cmd *)cmds->content)->pipefd[0];
-	//exec_cmmand(cc, envp);
-	//close(cc->inout[1]);
-	//close(cc->inout[0]);
 	i = 1;
 	while (++i < argc)
 	{

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:40:13 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 17:19:35 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 18:56:01 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <errno.h>
 # include "./libft/libft.h"
+# include "./get_next_line_bonus.h"
 
 typedef struct s_cmd
 {
@@ -63,7 +64,7 @@ char	**get_paths(char **envp);
 char	*get_cmd_full_path(char **envp, char *cmd);
 t_cmd	*new_cmd(char *cmd, int idx, int islast);
 t_file	*new_file(char *file, int idx, int perm);
-void	init_files(int argc, char **argv, t_d_list **files);
-void	init_cmds(int argc, char **argv, t_d_list **cmds);
+int		init_files(int argc, char **argv, t_d_list **files);
+void	init_cmds(int argc, char **argv, t_d_list **cmds, int start);
 
 #endif
