@@ -6,12 +6,12 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:40:13 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 18:56:01 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:31:24 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_PIPEX_H
-# define SO_PIPEX_H
+#ifndef SO_PIPEX_BONUS_H
+# define SO_PIPEX_BONUS_H
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>

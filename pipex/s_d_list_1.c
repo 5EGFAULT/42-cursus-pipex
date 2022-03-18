@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:10:17 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 17:16:46 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:18:44 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_d_lstdelfront(t_d_list **lst, void (*del)(void *))
 	ft_d_lstdelone(tmp, del);
 }
 
-void	ft_d_lstiter_back(t_d_list *lst, void (*f)(int))
+void	ft_d_lstiter_back(t_d_list *lst, void (*f)(void *))
 {
 	t_d_list	*tmp;
 

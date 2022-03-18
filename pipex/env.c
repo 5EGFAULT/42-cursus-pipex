@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 15:09:19 by asouinia          #+#    #+#             */
-/*   Updated: 2021/11/06 15:09:23 by asouinia         ###   ########.fr       */
+/*   Created: 2022/03/17 13:02:19 by asouinia          #+#    #+#             */
+/*   Updated: 2022/03/18 20:31:03 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./pipex.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*get_env_var(char **envp, char *env_var)
 {
-	int		i;
-	char	*tmp;
+	int	i;
 
-	i = 0;
-	tmp = NULL;
-	while (s[i] != '\0')
+	i = -1;
+	while (envp && envp[++i])
 	{
-		if ((char) c == s[i])
-			tmp = (char *)(s + i);
-		i++;
+		if (ft_strncmp(envp[i], env_var, ft_strlen(env_var)) == 0)
+		{
+			if (envp[i][ft_strlen(env_var)] == '=')
+			{
+				return (envp[i]);
+			}
+		}
 	}
-	if (tmp != NULL)
-		return (tmp);
-	if ((char) c == s[i])
-		return ((char *)(s + i));
 	return (NULL);
 }
