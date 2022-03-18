@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 23:30:20 by asouinia          #+#    #+#             */
-/*   Updated: 2021/11/13 23:30:21 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:52:45 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -29,6 +29,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (res);
 	}
 	if (s && start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return ("");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:40:13 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 20:49:20 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:55:14 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define PIPEX_BONUS_H
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
-# include "./libft/libft.h"
 # include "./get_next_line_bonus.h"
 
 typedef struct s_cmd
@@ -63,4 +63,9 @@ t_cmd		*new_cmd(char *cmd, int idx, int islast);
 t_file		*new_file(char *file, int idx, int perm);
 int			init_files(int argc, char **argv, t_d_list **files);
 void		init_cmds(int argc, char **argv, t_d_list **cmds, int start);
+size_t		ft_strlen(const char *s);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		**ft_split(char const *s, char c);
 #endif

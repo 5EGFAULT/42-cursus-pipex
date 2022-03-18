@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 22:19:20 by asouinia          #+#    #+#             */
-/*   Updated: 2021/11/14 22:19:23 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:52:50 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 static char	**empty_2d_array(char const *s, char c)
 {

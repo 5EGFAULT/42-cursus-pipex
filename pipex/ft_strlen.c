@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 23:11:50 by asouinia          #+#    #+#             */
-/*   Updated: 2021/11/15 23:11:52 by asouinia         ###   ########.fr       */
+/*   Created: 2021/11/06 11:34:31 by asouinia          #+#    #+#             */
+/*   Updated: 2022/03/18 21:49:31 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-t_list	*ft_lstlast(t_list *lst)
+size_t	ft_strlen(const char *s)
 {
-	t_list	*tmp;
+	size_t	i;
 
-	tmp = lst;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	return (tmp);
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
 }

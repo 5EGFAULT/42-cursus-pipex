@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 23:15:17 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 12:59:00 by asouinia         ###   ########.fr       */
+/*   Created: 2021/11/13 23:30:20 by asouinia          #+#    #+#             */
+/*   Updated: 2022/03/18 21:52:13 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_list	*last;
+	char	*res;
+	int		i;
 
-	if (!new)
-		return ;
-	if (*lst)
+	i = -1;
+	if (s && start < ft_strlen(s))
 	{
-		last = ft_lstlast(*lst);
-		new->next = NULL;
-		last->next = new;
+		res = (char *)malloc(len + 1);
+		if (!(res))
+			return (0);
+		while (s[++i + start] && (size_t) i < len)
+			res[i] = s[i + start];
+		res[i] = '\0';
+		return (res);
 	}
-	else
-	{
-		new->next = NULL;
-		*lst = new;
-	}
+	if (s && start >= ft_strlen(s))
+		return ("");
+	return (0);
 }

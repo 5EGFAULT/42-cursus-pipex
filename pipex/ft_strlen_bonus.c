@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 23:45:21 by asouinia          #+#    #+#             */
-/*   Updated: 2021/11/15 23:45:22 by asouinia         ###   ########.fr       */
+/*   Created: 2021/11/06 11:34:31 by asouinia          #+#    #+#             */
+/*   Updated: 2022/03/18 21:49:50 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+size_t	ft_strlen(const char *s)
 {
-	if (!lst)
-		return ;
-	del(lst->content);
-	free(lst);
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
 }

@@ -4,6 +4,7 @@
 		"unistd.h": "c",
 		"fcntl.h": "c",
 		"stdio.h": "c",
-		"pipex_bonus.h": "c"
+		"pipex_bonus.h": "c",
+		"libft.h": "c"
 	}
 }
