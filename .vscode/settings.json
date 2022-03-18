@@ -3,6 +3,7 @@
 		"pipex.h": "c",
 		"unistd.h": "c",
 		"fcntl.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"pipex_bonus.h": "c"
 	}
 }

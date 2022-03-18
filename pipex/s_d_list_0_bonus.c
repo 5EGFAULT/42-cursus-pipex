@@ -6,13 +6,13 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:10:09 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/13 16:31:23 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:08:43 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./pipex_bonus.h"
 
-t_d_list	*ft_d_lstnew(int content)
+t_d_list	*ft_d_lstnew(void *content)
 {
 	t_d_list	*ret;
 

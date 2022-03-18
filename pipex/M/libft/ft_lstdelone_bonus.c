@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asouinia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 14:15:03 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/17 14:28:49 by asouinia         ###   ########.fr       */
+/*   Created: 2021/11/15 23:45:21 by asouinia          #+#    #+#             */
+/*   Updated: 2021/11/15 23:45:22 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./pipex.h"
+#include "libft.h"
 
-void	free_2d(char **ptr)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int i;
-
-	if (!ptr)
+	if (!lst)
 		return ;
-	i = -1;
-	while (ptr[++i])
-		free(ptr[i]);
-	free(ptr);	
+	del(lst->content);
+	free(lst);
 }

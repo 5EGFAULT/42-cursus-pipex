@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:43:00 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/17 20:43:00 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:14:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ int	exec_cmmand(int	*inout, char *cmd, char **envp, int *fdpipe)
 			exit(1);
 		}
 		str = get_cmd_full_path(envp, splited_cmd[0]);
+		if (access(str, X_OK))
+		{
+			write(2, "pipex: command not found : ", 28);
+			write(2, cmd, ft_strlen(cmd));
+			write(2, "\n", 1);
+			exit(127);
+		}
 		if (execve(str, splited_cmd, envp) < 0)
 		{
 			perror("pipex: ");
