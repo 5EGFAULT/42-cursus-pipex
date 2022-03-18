@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 21:01:27 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 21:33:06 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/18 22:27:25 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc)
 
 	tmp = cmds;
 	if (((t_file *)files->content)->fd < 0)
+	{
+		close(((t_cmd *)tmp->content)->pipefd[1]);
 		tmp = cmds->next;
+	}
 	while (tmp)
 	{
 		cc = tmp->content;
