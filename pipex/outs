@@ -1,0 +1,25 @@
+total 168
+-rw-r--r--   1 asouinia  2019     0B Mar 18 16:21  test1vscode
+drwxr-xr-x  24 asouinia  2019   816B Mar 18 16:25 .
+drwxr-xr-x   7 asouinia  2019   238B Mar 18 12:06 ..
+drwxr-xr-x  22 asouinia  2019   748B Mar 18 12:23 M
+-rw-r--r--   1 asouinia  2019   684B Mar 18 16:25 Makefile
+-rw-r--r--   1 asouinia  2019   1.5K Mar 18 12:31 dup.c
+-rw-r--r--   1 asouinia  2019   1.2K Mar 18 12:16 env_bonus.c
+-rw-r--r--   1 asouinia  2019   928B Mar 18 16:25 env_bonus.o
+drwxr-xr-x  82 asouinia  2019   2.7K Mar 18 16:25 libft
+-rw-r--r--   1 asouinia  2019   3.6K Mar 18 16:25 main_bonus.c
+-rw-r--r--   1 asouinia  2019   3.4K Mar 18 16:25 main_bonus.o
+-rw-r--r--   1 asouinia  2019   189B Mar 18 12:31 out
+-rw-r--r--   1 asouinia  2019     0B Mar 18 16:25 outs
+-rw-r--r--   1 asouinia  2019   1.6K Mar 18 12:16 path_bonus.c
+-rw-r--r--   1 asouinia  2019   1.7K Mar 18 16:25 path_bonus.o
+-rwxr-xr-x   1 asouinia  2019    14K Mar 18 16:25 pipex
+-rw-r--r--   1 asouinia  2019   2.3K Mar 18 15:52 pipex_bonus.h
+-rw-r--r--   1 asouinia  2019   1.8K Mar 18 12:17 s_d_list_0_bonus.c
+-rw-r--r--   1 asouinia  2019   1.6K Mar 18 16:25 s_d_list_0_bonus.o
+-rw-r--r--   1 asouinia  2019   1.6K Mar 18 14:35 s_d_list_1_bonus.c
+-rw-r--r--   1 asouinia  2019   1.5K Mar 18 16:25 s_d_list_1_bonus.o
+-rw-r--r--   1 asouinia  2019    50B Mar 18 16:19 ss
+-rw-r--r--   1 asouinia  2019   1.8K Mar 18 14:48 utils_bonus.c
+-rw-r--r--   1 asouinia  2019   1.9K Mar 18 16:25 utils_bonus.o

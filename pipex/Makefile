@@ -1,6 +1,6 @@
 NAME	:= pipex
 SRC		:=  env.c    main.c   path.c   utils.c
-SRCB	:=  env.c    main_bonus.c   path.c   utils.c
+SRCB	:=  env_bonus.c    main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_bonus.c s_d_list_1_bonus.c
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
 CC		:= gcc
@@ -9,7 +9,7 @@ LIBFT	:= ./libft/libft.a
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME)
+all: bonus
 $(NAME): $(LIBFT) $(OBJ)
 	@$(CC) $(FLAGS)  $(LIBFT) $(OBJ) -o $(NAME)
 %.o: %.c

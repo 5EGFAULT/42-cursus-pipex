@@ -1,0 +1,17 @@
+M
+Makefile
+dup.c
+env_bonus.c
+env_bonus.o
+libft
+main_bonus.c
+main_bonus.o
+out
+path_bonus.c
+path_bonus.o
+pipex
+pipex_bonus.h
+s_d_list_0_bonus.c
+s_d_list_1_bonus.c
+utils_bonus.c
+utils_bonus.o
