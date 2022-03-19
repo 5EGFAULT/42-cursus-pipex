@@ -1,10 +1,10 @@
 NAME	:= pipex
-SRC		:=  env.c    main.c  ft_split.c ft_substr.c path.c   utils.c s_d_list_0.c s_d_list_1.c pipe.c ft_strjoin.c ft_strlen.c ft_strncmp.c
-SRCB	:=  env_bonus.c ft_split_bonus.c ft_substr_bonus.c   main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_bonus.c s_d_list_1_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c  pipe_bonus.c ft_strjoin_bonus.c ft_strlen_bonus.c ft_strncmp_bonus.c
+SRC		:=  env.c    main.c  ft_split.c ft_substr.c path.c   utils.c s_d_list_0.c s_d_list_1.c pipe.c ft_strjoin.c ft_strlen.c ft_strncmp.c ft_strdup.c ft_memcpy.c ft_strtrim.c new_split.c
+SRCB	:=  env_bonus.c ft_split_bonus.c ft_substr_bonus.c   main_bonus.c   path_bonus.c   utils_bonus.c s_d_list_0_bonus.c s_d_list_1_bonus.c get_next_line_bonus.c ft_memcpy_bonus.c get_next_line_utils_bonus.c  pipe_bonus.c ft_strjoin_bonus.c ft_strlen_bonus.c ft_strncmp_bonus.c ft_strdup_bonus.c ft_strtrim_bonus.c new_split_bonus.c
 OBJ		:= $(patsubst %.c, %.o, $(SRC)) 
 OBJB	:= $(patsubst %.c, %.o, $(SRCB)) 
 CC		:= gcc
-FLAGS	:= -Wall -Wextra -Werror  #-g -fsanitize=address 
+FLAGS	:= -Wall -Wextra -Werror  -g -fsanitize=address 
 
 .PHONY: all clean fclean re bonus
 

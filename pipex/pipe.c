@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 21:01:27 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 22:15:30 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:35:37 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,29 @@ void	loop_cmds(t_d_list *files, t_d_list *cmds, char **envp, int argc)
 		wait(NULL);
 }
 
+static char	ft_quote(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd)
+		return (' ');
+	while (cmd[i] && cmd[i] != '"' && cmd[i] != '\'')
+		++i;
+	if (cmd[i] != '\0')
+		return (cmd[i]);
+	return (' ');
+}
+
 static void	exec_inter(t_cmd *cmd, char **envp)
 {
 	char	**splited_cmd;
 	char	*str;
 
-	splited_cmd = ft_split(cmd->cmd, ' ');
+	if (ft_quote(cmd->cmd) == ' ')
+		splited_cmd = ft_split(cmd->cmd, ' ');
+	else
+		splited_cmd = ft_new_split(cmd->cmd, ft_quote(cmd->cmd));
 	if (!splited_cmd)
 	{
 		perror("pipex: ");
