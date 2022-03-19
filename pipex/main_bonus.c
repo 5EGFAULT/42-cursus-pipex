@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:42:40 by asouinia          #+#    #+#             */
-/*   Updated: 2022/03/18 21:59:46 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/03/19 23:50:40 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int	her_doc(char *limiter)
 	testlimitter = ft_strjoin(limiter, "\n");
 	write(1, "heredoc> ", 10);
 	str = get_next_line(0);
-	while (ft_strncmp(str, testlimitter, ft_strlen(testlimitter)))
+	while (!str ||  ft_strncmp(str, testlimitter, ft_strlen(testlimitter)))
 	{
 		write(pip[1], str, ft_strlen(str));
 		write(1, "heredoc> ", 10);
-		free(str);
+		if (str)
+			free(str);
 		str = get_next_line(0);
 	}
 	close(pip[1]);
